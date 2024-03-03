@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    {% if refresh %}
+        <meta http-equiv="refresh" content="5">
+    {% endif %}
+
+    <title>QA Evaluate</title>
+
+    <link rel="canonical" href="https://appstack.bootlab.io/pages-blank.html"/>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="{{ url_for('static', filename='dist/css/light.css') }}" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+
+    <!-- js files for datatables -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.11.2/js/jquery.dataTables.min.js"></script>
+    <!--<script src="https://cdn.datatables.net/1.11.2/js/dataTables.bootstrap5.min.js"></script>-->
+</head>
+
+<body data-theme="light" data-layout="fluid" data-sidebar-position="left" data-sidebar-behavior="sticky">
+<div class="wrapper">
+
+    <div class="main">
+
+           <a class="sidebar-brand" href="/">
+                <img height="100" weight="100" src="static/img/ytü.png"/>
+            </a>
+        <main class="content">
+
+                <div class="row">
+                    <div class="offset-5 col-6">
+                        {% block content %}
+
+                        {% endblock %}
+                    </div>
+
+        </main>
+
+
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='dist/js/app.js') }}"></script>
+</body>
+
+</html>

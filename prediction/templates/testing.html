@@ -1,0 +1,69 @@
+{% extends "index.html" %}
+
+{% block content %}
+    <div class="card">
+        <div class="card-header">
+            <h5 class="card-title">Global Model Testing</h5>
+            <h6 class="card-subtitle text-muted">Model testing for a given real answer and predict answer</h6>
+        </div>
+        <div class="card-body">
+            <form id="seed_upload_form">
+
+                <div class="form-group row">
+                    <label for="model_type" class="col-sm-2 col-form-label">Model Type:</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" id="model_type" name="model_type">
+                            <option value="nlp">NLP</option>
+                        </select>
+                    </div>
+                </div>
+
+                <br>
+                <div class="form-group row">
+                    <label for="global_model" class="col-sm-2 col-form-label">Global model:</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" id="global_model" name="global_model">
+                            {% for model in global_model_list %}
+                            <option>{{model}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+
+                <br>
+                <div class="form-group row">
+                    <label for="real_answer" class="col-sm-2 col-form-label">Real Answer:</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" id="real_answer" name="real_answer" rows="5">{{real_answer}}</textarea>
+                    </div>
+                </div>
+
+                <br>
+                <div class="form-group row">
+                    <label for="predict_answer" class="col-sm-2 col-form-label">Predict Answer:</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" id="predict_answer" name="predict_answer" rows="5">{{predict_answer}}</textarea>
+                    </div>
+                </div>
+
+                <br>
+                <br>
+                <center>
+                    <div class="form-group row">
+                        <div class="col-sm-10">
+                          <button type="button" class="btn btn-primary">Predict Evaluate!</button>
+                          <button type="reset" class="btn btn-secondary"> Reset </button>
+                        </div>
+                    </div>
+
+                    <br>
+                    <a id="msg"></a>
+
+                </center>
+            </form>
+        </div>
+    </div>
+    </div>
+    </div>
+{% endblock %}
+
