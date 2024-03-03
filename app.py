@@ -2,8 +2,8 @@ from flask import Flask, render_template, request, json, jsonify, send_file, red
 from io import BytesIO
 import numpy as np
 from bson.json_util import dumps
-from prediction.storage.mongotracer import MongoTracer
-from prediction.storage.miniorepo import MinioRepo
+from storage.mongotracer import MongoTracer
+from storage.miniorepo import MinioRepo
 import yaml
 from datetime import datetime
 import uuid
@@ -25,7 +25,7 @@ def load_model(path):
     return weights
 
 
-with open('../prediction/settings.yaml', 'r') as fh:
+with open('settings.yaml', 'r') as fh:
     try:
         settings = dict(yaml.safe_load(fh))
     except yaml.YAMLError as e:
