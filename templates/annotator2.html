@@ -1,0 +1,157 @@
+{% extends "index.html" %}
+
+{% block content %}
+    <div class="card">
+        <div class="card-header">
+            <h5 class="card-title">Category page prepared to determine the question answering category </h5>
+        </div>
+        <div class="card-body">
+            <div class="m-3 justify-content-center">
+              <form class="mb-3"  id="post-form" action="/category-labeling" method="POST">
+                  <div class="form-group row">
+                    <label for="paragraph" class="col-sm-2 col-form-label">Paragraph:</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" id="paragraph" rows="4" placeholder="Write your paragraph here">{{ data.paragraf }}</textarea>
+                    </div>
+                  </div>
+
+                  <br>
+
+                   <div class="form-group row">
+                    <label for="question" class="col-sm-2 col-form-label">Question:</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" id="question" rows="2" placeholder="question">{{ data.question }}</textarea>
+                    </div>
+                   </div>
+
+                  <br>
+
+                  <div class="form-group row">
+                    <label for="realanswer" class="col-sm-2 col-form-label">Real Answer:</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" id="realanswer" rows="2" placeholder="Write real answer">{{ data.realanswer }}</textarea>
+                    </div>
+                  </div>
+                  <br>
+
+                  <div>
+                    <label for="quality" >Can you evaluate the real answer quality category?</label>
+                     <select class="form-control" id="quality" style="width: 20%;" required>
+                        <option value="" disabled selected>--Select--</option>
+                        <option value="3">Successful</option>
+                        <option value="2">Medium Successful</option>
+                        <option value="1">Unsuccessful but okey</option>
+                    </select>
+                  </div>
+
+                  <br>
+
+                <center>
+                    <!-- <button type="button" class="btn btn-primary" id="getdata" > Get Data </button> -->
+                    <button type="button" class="btn btn-primary" id="add"> Add </button>
+                    <!--<button type="reset" class="btn btn-primary" > Reset </button> -->
+                </center>
+              </form>
+
+            </div>
+
+            <script
+              src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+              integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+              crossorigin="anonymous">
+            </script>
+            <script
+              src="https://code.jquery.com/jquery-3.6.0.min.js"
+              integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+              crossorigin="anonymous">
+            </script>
+            <script>
+              $('#getdata').click(function() {
+                getData();
+                // Ajax
+              });
+              $('#add').click(function() {
+                postData();
+                // Ajax
+              });
+              //Global variables
+               function getData() {
+                  var userid = $('#user_id').val()
+                  var settings = {
+                      "url": "{{API_URL}}/getdata_test?userid=" + userid,
+                      "method": "GET",
+                      "timeout": 0,
+                      "headers": {
+                        "Content-Type": "application/json"
+                      }
+                    };
+
+                    $.ajax(settings).done(function (response) {
+                      console.log(response);
+                      console.log(response.question);
+                      $('#paragraph').val(response.paragraf)
+                      $('#question').val(response.question)
+                      $('#realanswer').val(response.realanswer)
+                      $('#id').val(response.id)
+                    });
+               }
+
+               function postData() {
+                    var paragraph = $('#paragraph').val();
+                    var question = $('#question').val();
+                    var realanswer = $('#realanswer').val();
+                    var predictanswer = $('#predictanswer').val();
+                    var id = $('#id').val();
+                    var question1 = $('#question1').val();
+                    var question2 = $('#question2').val();
+                    var question3 = $('#question3').val();
+                    var question4 = $('#question4').val();
+                    var question5 = $('#question5').val();
+                    var question6 = $('#question6').val();
+                    var question7 = $('#question7').val();
+                    var question8 = $('#question8').val();
+                    var userid = $('#user_id').val();
+                    console.log('POST isteği başarılı:', question1);
+
+                  var settings = {
+                      "url": "{{API_URL}}/active-learning",
+                      "method": "POST",
+                      "timeout": 0,
+                      "headers": {
+                        "Content-Type": "application/json"
+                      },
+                      "data": JSON.stringify({question1, question2, question3,question4,question5,question6,question7,question8,id,userid}),
+                    };
+
+                    $.ajax(settings).done(function (response) {
+                      console.log(response);
+                      window.location = "{{API_URL}}/active-learning?userid=" + userid;
+                   // location.reload();
+                    });
+
+               }
+
+              function FormClean(inputName) {
+                if (inputName === 'other_answer') {
+                  $('#answer').val('')
+                  $('#answer_start').val('')
+                } else if (inputName === 'other_question') {
+                  $('#question').val('')
+                  $('#answer').val('')
+                  $('#answer_start').val('')
+                  $('#question_id').val('')
+                } else {
+                  $('#paragraph').val('')
+                  $('#question').val('')
+                  $('#answer').val('')
+                  $('#answer_start').val('')
+                  $('#paragraph_id').val('')
+                }
+              }
+            </script>
+        </div>
+    </div>
+    </div>
+    </div>
+{% endblock %}
+

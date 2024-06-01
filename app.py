@@ -133,6 +133,18 @@ def active_learning():
             # Hata durumunda hata mesajını gönder
             return jsonify({'error': str(e)})
 
+@app.route('/category-labeling', methods=['GET','POST'])
+def category_labeling():
+    print(request.method)
+    if request.method == "GET":
+        user_id = request.args.get('userid')
+        print("get girdi")
+        print("user id: ", user_id)
+        paragraf, question, realanswer, predictanswer, id = get_data(user_id)
+        data = {'paragraf': paragraf, 'question': question,  "realanswer" : realanswer, "id": id, "userid": user_id}
+        print(data)
+        # İhtiyaca göre diğer alanlar da eklenebilir
+        return render_template('annotator2.html', data=data)
 
 @app.route('/', methods=['GET','POST'])
 def login():
