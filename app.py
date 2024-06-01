@@ -143,7 +143,6 @@ def category_labeling():
         paragraf, question, realanswer, predictanswer, id = get_data(user_id)
         data = {'paragraf': paragraf, 'question': question,  "realanswer" : realanswer, "id": id, "userid": user_id}
         print(data)
-        # İhtiyaca göre diğer alanlar da eklenebilir
         return render_template('annotator2.html', data=data)
 
 @app.route('/', methods=['GET','POST'])
