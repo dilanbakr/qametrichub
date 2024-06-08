@@ -49,6 +49,7 @@ def get_data(user_id):
     return paragraf, question, real_answer, predict_answer, id
 
 def login_user(username, password):
+    print("dbname: ", DBNAME, "user: ", DBUSER, "dbhost: ", DBHOST)
     try:
         conn = psycopg2.connect(dbname=DBNAME,user=DBUSER,password=DBPASS,host=DBHOST,port=DBPORT)
         cur = conn.cursor()
