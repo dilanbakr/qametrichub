@@ -8,13 +8,6 @@
         <textarea id="username" rows="1" style="width: 200px" placeholder="Enter user name"></textarea>
     </div>
   </div>
-  <div class="form-group row">
-    <label for="pass">Password:</label>
-    <div>
-        <textarea id="pass" rows="1" style="width: 200px" placeholder="Enter password"></textarea>
-    </div>
-  </div>
-
   <button id="login" type="button" class="btn btn-primary">Submit</button>
 </form>
 <script>
@@ -24,7 +17,6 @@
   });
   function postData() {
                     var username = $('#username').val();
-                    var pass = $('#pass').val();
                     console.log('POST isteği başarılı:', username);
 
                   var settings = {
@@ -34,7 +26,7 @@
                       "headers": {
                         "Content-Type": "application/json"
                       },
-                      "data": JSON.stringify({username, pass}),
+                      "data": JSON.stringify({username}),
                     };
 
                     $.ajax(settings).done(function (response) {

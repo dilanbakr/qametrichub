@@ -51,7 +51,7 @@ def get_data(user_id):
 def login_user(username, password):
     print("dbname: ", DBNAME, "user: ", DBUSER, "dbhost: ", DBHOST)
     try:
-        conn = psycopg2.connect(dbname=DBNAME,user=DBUSER,password=DBPASS,host=DBHOST,port=DBPORT,sslmode='require')
+        conn = psycopg2.connect(dbname=DBNAME,user=DBUSER,password=DBPASS,host=DBHOST,port=DBPORT)
         cur = conn.cursor()
         cur.execute("SELECT id FROM userlogin WHERE username = %s AND pass = %s", (username, password))
         user = cur.fetchone()

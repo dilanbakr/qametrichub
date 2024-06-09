@@ -155,11 +155,9 @@ def login():
         print("posta girdi")
         data = request.get_json()
         username = data.get('username')
-        password = data.get('pass')
-        userid = login_user(username, password)
+        #userid = login_user(username, password)
         #paragraf, question, realanswer, predictanswer, id = get_data(userid)
-        data = {'userid': userid}
-        print(data)
+        data = {'userid': 2}
         return data
 
 document = {
