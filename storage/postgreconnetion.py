@@ -30,6 +30,7 @@ def get_data(user_id):
         real_answer=''
         predict_answer=''
         id=1
+        print("dbname: ", DBNAME,"user: ", DBUSER, "password: ", DBPASS, "host: ", DBHOST, "port", DBPORT)
         conn = psycopg2.connect(dbname=DBNAME,user=DBUSER,password=DBPASS,host=DBHOST,port=DBPORT)
         cur = conn.cursor()
         cur.execute("SELECT paragraf, question, real_answer, predict_answer, id FROM tez where anlam IS NULL and ortaktema IS NULL and iknaedici IS NULL and etkili IS NULL and bilgilendirici IS NULL and tarafsiz IS NULL and dil IS NULL and etki IS NULL and userid = %s limit 1;", (user_id,))
